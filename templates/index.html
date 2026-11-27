@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Fake News Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <p class="eyebrow">MCA PROJECT</p>
+      <h1>AI-Based Fake News Detection System</h1>
+      <p class="subtitle">Enter a news passage to get a machine-learning prediction.</p>
+    </header>
+
+    <section class="panel">
+      <form method="post">
+        <label for="news_text">News content</label>
+        <textarea id="news_text" name="news_text" rows="9" required
+          placeholder="Paste the news article here...">{{ news_text }}</textarea>
+        <button type="submit">Check News</button>
+      </form>
+
+      {% if error %}
+        <div class="message error" role="alert">{{ error }}</div>
+      {% endif %}
+      {% if prediction %}
+        <div class="message result" role="status">
+          <span>Model prediction</span>
+          <strong class="{{ 'fake' if prediction == 'FAKE' else 'real' }}">{{ prediction }} NEWS</strong>
+          <p>This is an automated prediction, not proof. Verify important claims with reliable sources.</p>
+        </div>
+      {% endif %}
+    </section>
+
+    <footer>
+      <p><strong>Student:</strong> Nitesh Panduranga Naik</p>
+      <p><strong>USN:</strong> SCA25MCA041</p>
+      <p class="notice">Academic demonstration only. Model quality depends on the accuracy, size and balance of its training dataset.</p>
+    </footer>
+  </main>
+</body>
+</html>
